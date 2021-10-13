@@ -8,12 +8,12 @@ const Header: React.FC = () => {
         Le Gab
       </div>
       <div className="flex gap-5 items-center pr-6">
-        <a href="#home">
+        <a href="/home#home">
           <BlobButton>
             <div className="w-32">Home</div>
           </BlobButton>
         </a>
-        <a href="#contact">
+        <a href="/home#contact">
           <BlobButton>
             <div className="w-32">Contact</div>
           </BlobButton>

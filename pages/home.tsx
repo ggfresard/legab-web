@@ -157,7 +157,7 @@ const Home: React.FC = () => {
             type="tel"
           ></TextInput>
           <TextArea className="w-72" placeholder="Message"></TextArea>
-          <BlobButton>Enviar</BlobButton>
+          <BlobButton>Send</BlobButton>
         </div>
       </div>
     </div>
