@@ -1,3 +1,4 @@
+import Link from "next/link"
 import React from "react"
 import BlobButton from "./BlobButton"
 
@@ -8,19 +9,26 @@ const Header: React.FC = () => {
         Le Gab
       </div>
       <div className="flex gap-5 items-center pr-6">
-        <a href="/home#home">
+        <Link href="/home#home">
           <BlobButton>
             <div className="w-32">Home</div>
           </BlobButton>
-        </a>
-        <a href="/home#contact">
+        </Link>
+        <Link href="/home#bio">
+          <BlobButton>
+            <div className="w-32">Bio</div>
+          </BlobButton>
+        </Link>
+        <Link href="/home#contact">
           <BlobButton>
             <div className="w-32">Contact</div>
           </BlobButton>
-        </a>
-        <BlobButton>
-          <div className="w-32">FAQ</div>
-        </BlobButton>
+        </Link>
+        <Link href="/projects">
+          <BlobButton>
+            <div className="w-32">Projects</div>
+          </BlobButton>
+        </Link>
       </div>
     </div>
   )

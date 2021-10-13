@@ -6,12 +6,20 @@ import TextArea from "components/TextArea"
 import TextInput from "components/TextInput"
 import useHover from "hooks/useHover"
 import useWindowDimensions from "hooks/useWindowDimensions"
+import Link from "next/link"
 import React, { LegacyRef, useEffect, useState } from "react"
 
 const Home: React.FC = () => {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions()
   const { isHovered: firstPanelHover, props: firstPanelProps } = useHover()
-  const { isHovered: secondPanelHover, props: secondPanelProps } = useHover()
+  const { isHovered: secondPanelFirstHover, props: secondPanelFirstProps } =
+    useHover()
+  const { isHovered: secondPanelSecondHover, props: secondPanelSecondProps } =
+    useHover()
+  const { isHovered: thirdPanelHover, props: thirdPanelProps } = useHover()
+
+  const secondPanelHover = secondPanelFirstHover || secondPanelSecondHover
+
   return (
     <div
       className="overflow-y-auto overflow-x-hidden scrollbar-hide"
@@ -49,7 +57,7 @@ const Home: React.FC = () => {
         <div
           className={`${
             firstPanelHover ? "border-r-1" : ""
-          } flex h-2/5 overflow-hidden transition-all`}
+          } flex h-1/5 overflow-hidden transition-all`}
           style={{
             width: `${(windowWidth ?? 0) * 2}px`,
             transform: `translateX(${firstPanelHover ? "0" : "-50%"})`,
@@ -78,6 +86,98 @@ const Home: React.FC = () => {
             ></polygon>
           </svg>
         </div>
+        <div className="flex-1 flex items-center justify-around">
+          <Link href="#bio">
+            <BlobButton>Bio</BlobButton>
+          </Link>
+
+          <Link href="#contact">
+            <BlobButton>Contact</BlobButton>
+          </Link>
+        </div>
+      </div>
+      <div
+        className="flex flex-col overflow-hidden relative"
+        style={{
+          width: `${windowWidth ?? 0}px`,
+          height: `calc(${windowHeight ?? 0}px - 8rem)`,
+        }}
+        id="bio"
+      >
+        <svg
+          className="absolute h-full w-full top-0 right-0 fill-current"
+          viewBox="0 0 100 100"
+        >
+          <circle
+            cx={20}
+            cy={55}
+            r={secondPanelFirstHover || !secondPanelHover ? 70 : 0}
+          ></circle>
+          <circle
+            cx={80}
+            cy={40}
+            r={secondPanelSecondHover || !secondPanelHover ? 70 : 0}
+          ></circle>
+        </svg>
+        <div className="w-full flex h-full absolute top-0 left-0 ">
+          <div
+            {...secondPanelFirstProps}
+            className="flex-1 h-full text-5 justify-center items-center flex"
+          >
+            <div
+              style={{
+                opacity: secondPanelFirstHover || !secondPanelHover ? 1 : 0,
+              }}
+            >
+              <div className="text-4xl text-3 font-semibold">Bio:</div>
+              <ul className="text-2xl max-w-2xl">
+                <li>
+                  <b className="text-3xl text-3">Name:</b> Gabriel Pablo
+                  González Fresard
+                </li>
+                <li>
+                  <b className="text-3xl text-3">Profession: </b>Software
+                  Engineer
+                </li>
+                <li>
+                  <b className="text-3xl text-3">Education: </b>Civil Engineer,
+                  mayor in Computer Science and Information Technologies
+                  Universidad Católica del Norte
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div
+            className="flex-1 h-full text-5 justify-center items-center flex"
+            {...secondPanelSecondProps}
+          >
+            <div
+              style={{
+                opacity: secondPanelSecondHover || !secondPanelHover ? 1 : 0,
+              }}
+            >
+              <ul className="text-2xl max-w-2xl">
+                <li>
+                  <b className="text-3xl text-3">Skills:</b> Fast learner, High
+                  adaptability, People person
+                </li>
+                <li>
+                  <b className="text-3xl text-3">Frameworks: </b>React/Next,
+                  Angular, Svelte, Node/NestJS, Express, Django/DRF, Laravel,
+                  .NET Core, TypeORM, SQL and No-SQL Databases, Flutter,
+                  React-Native WebSockets, JWT, REST API, Testing,Git ,CI/CD,
+                  AWS, Heroku IOT/Arduino, Tailwind, Bootstrap, JQuery, Maps,
+                  Chart.js, THREE.js, P5.js, PIXI.js, Unity, Godot, GameMaker,
+                  Javascript/Typescript(♡),Python, C/C++, C#,PHP, Java, Prolog
+                </li>
+                <li>
+                  <b className="text-3xl text-3">Languages: </b>
+                  Spanish:Native, English:Advanced
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
       <div
         className="flex flex-col overflow-x-hidden"
@@ -88,14 +188,14 @@ const Home: React.FC = () => {
         id="contact"
       >
         <div
-          {...secondPanelProps}
+          {...thirdPanelProps}
           className="flex items-center flex-1 m-[10rem]  flex-col gap-6 h-full relative justify-center border-8 border-1"
         >
           <div
             className={`absolute transition-all`}
             style={{
-              bottom: secondPanelHover ? "15px" : "5px",
-              left: secondPanelHover ? "15px" : "5px",
+              bottom: secondPanelFirstHover ? "15px" : "5px",
+              left: secondPanelFirstHover ? "15px" : "5px",
             }}
           >
             <div className="relative">
@@ -106,8 +206,8 @@ const Home: React.FC = () => {
           <div
             className={`absolute transition-all`}
             style={{
-              top: secondPanelHover ? "15px" : "5px",
-              left: secondPanelHover ? "15px" : "5px",
+              top: secondPanelFirstHover ? "15px" : "5px",
+              left: secondPanelFirstHover ? "15px" : "5px",
             }}
           >
             <div className="relative">
@@ -118,8 +218,8 @@ const Home: React.FC = () => {
           <div
             className={`absolute transition-all`}
             style={{
-              bottom: secondPanelHover ? "15px" : "5px",
-              right: secondPanelHover ? "15px" : "5px",
+              bottom: secondPanelFirstHover ? "15px" : "5px",
+              right: secondPanelFirstHover ? "15px" : "5px",
             }}
           >
             <div className="relative">
@@ -130,8 +230,8 @@ const Home: React.FC = () => {
           <div
             className={`absolute transition-all`}
             style={{
-              top: secondPanelHover ? "15px" : "5px",
-              right: secondPanelHover ? "15px" : "5px",
+              top: secondPanelFirstHover ? "15px" : "5px",
+              right: secondPanelFirstHover ? "15px" : "5px",
             }}
           >
             <div className="relative">
@@ -141,7 +241,7 @@ const Home: React.FC = () => {
           </div>
           <div
             className={`font-medium `}
-            style={{ fontSize: secondPanelHover ? "2.5rem" : "2rem" }}
+            style={{ fontSize: secondPanelFirstHover ? "2.5rem" : "2rem" }}
           >
             Contact
           </div>
