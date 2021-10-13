@@ -22,27 +22,27 @@ const Home: React.FC = () => {
 
   return (
     <div
-      className="overflow-y-auto overflow-x-hidden scrollbar-hide"
+      className="overflow-y-auto flex-1 overflow-x-hidden scrollbar-hide"
       style={{
         width: `${windowWidth ?? 0}px`,
-        height: `calc(${windowHeight ?? 0}px - 8rem)`,
       }}
     >
       <div
         id="home"
-        className="flex flex-col overflow-x-hidden"
+        className="flex flex-col overflow-x-hidden h-full"
         style={{
           width: `${windowWidth ?? 0}px`,
-          height: `calc(${windowHeight ?? 0}px - 8rem)`,
         }}
       >
         <div
           className={`bg-1 h-3/5 flex transition-all items-center justify-around`}
           {...firstPanelProps}
         >
-          <div className="text-3 flex-1 text-9xl text-center">Le Gab</div>
-          <div className="w-3 rounded-full h-2/3 bg-3"></div>
-          <div className="flex flex-1 items-center justify-center gap-3 text-5">
+          <div className="text-3 flex-1 text-3xl md:text-9xl text-center">
+            Le Gab
+          </div>
+          <div className="w-1 md:w-3 rounded-full h-2/3 bg-3"></div>
+          <div className="flex flex-1 flex-wrap items-center justify-center gap-3 text-5">
             <ReactIcon
               svgProps={{
                 style: {
@@ -97,10 +97,9 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div
-        className="flex flex-col overflow-hidden relative"
+        className="flex h-full flex-col overflow-hidden relative"
         style={{
           width: `${windowWidth ?? 0}px`,
-          height: `calc(${windowHeight ?? 0}px - 8rem)`,
         }}
         id="bio"
       >
@@ -129,20 +128,22 @@ const Home: React.FC = () => {
                 opacity: secondPanelFirstHover || !secondPanelHover ? 1 : 0,
               }}
             >
-              <div className="text-4xl text-3 font-semibold">Bio:</div>
-              <ul className="text-2xl max-w-2xl">
+              <div className="text-2xl md:text-4xl text-3 font-semibold">
+                Bio:
+              </div>
+              <ul className="text-lg md:text-2xl max-w-2xl">
                 <li>
-                  <b className="text-3xl text-3">Name:</b> Gabriel Pablo
-                  González Fresard
+                  <b className="text-xl md:text-3xl text-3">Name:</b> Gabriel
+                  Pablo González Fresard
                 </li>
                 <li>
-                  <b className="text-3xl text-3">Profession: </b>Software
-                  Engineer
+                  <b className="text-xl md:text-3xl text-3">Profession: </b>
+                  Software Engineer
                 </li>
                 <li>
-                  <b className="text-3xl text-3">Education: </b>Civil Engineer,
-                  mayor in Computer Science and Information Technologies
-                  Universidad Católica del Norte
+                  <b className="text-xl md:text-3xl text-3">Education: </b>Civil
+                  Engineer, mayor in Computer Science and Information
+                  Technologies Universidad Católica del Norte
                 </li>
               </ul>
             </div>
@@ -156,22 +157,23 @@ const Home: React.FC = () => {
                 opacity: secondPanelSecondHover || !secondPanelHover ? 1 : 0,
               }}
             >
-              <ul className="text-2xl max-w-2xl">
+              <ul className="text-lg md:text-2xl max-w-2xl">
                 <li>
-                  <b className="text-3xl text-3">Skills:</b> Fast learner, High
-                  adaptability, People person
+                  <b className="text-xl md:text-3xl text-3">Skills:</b> Fast
+                  learner, High adaptability, People person
                 </li>
                 <li>
-                  <b className="text-3xl text-3">Frameworks: </b>React/Next,
-                  Angular, Svelte, Node/NestJS, Express, Django/DRF, Laravel,
-                  .NET Core, TypeORM, SQL and No-SQL Databases, Flutter,
-                  React-Native WebSockets, JWT, REST API, Testing,Git ,CI/CD,
-                  AWS, Heroku IOT/Arduino, Tailwind, Bootstrap, JQuery, Maps,
-                  Chart.js, THREE.js, P5.js, PIXI.js, Unity, Godot, GameMaker,
-                  Javascript/Typescript(♡),Python, C/C++, C#,PHP, Java, Prolog
+                  <b className="text-xl md:text-3xl text-3">Frameworks: </b>
+                  React/Next, Angular, Svelte, Node/NestJS, Express, Django/DRF,
+                  Laravel, .NET Core, TypeORM, SQL and No-SQL Databases,
+                  Flutter, React-Native WebSockets, JWT, REST API, Testing,Git
+                  ,CI/CD, AWS, Heroku IOT/Arduino, Tailwind, Bootstrap, JQuery,
+                  Maps, Chart.js, THREE.js, P5.js, PIXI.js, Unity, Godot,
+                  GameMaker, Javascript/Typescript(♡),Python, C/C++, C#,PHP,
+                  Java, Prolog
                 </li>
                 <li>
-                  <b className="text-3xl text-3">Languages: </b>
+                  <b className="text-xl md:text-3xl text-3">Languages: </b>
                   Spanish:Native, English:Advanced
                 </li>
               </ul>
@@ -180,22 +182,21 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div
-        className="flex flex-col overflow-x-hidden"
+        className="flex h-full flex-col overflow-x-hidden"
         style={{
           width: `${windowWidth ?? 0}px`,
-          height: `calc(${windowHeight ?? 0}px - 8rem)`,
         }}
         id="contact"
       >
         <div
           {...thirdPanelProps}
-          className="flex items-center flex-1 m-[10rem]  flex-col gap-6 h-full relative justify-center border-8 border-1"
+          className="flex items-center flex-1 m-7 md:m-[10rem]  flex-col gap-6 h-full relative justify-center border-8 border-1"
         >
           <div
             className={`absolute transition-all`}
             style={{
-              bottom: secondPanelFirstHover ? "15px" : "5px",
-              left: secondPanelFirstHover ? "15px" : "5px",
+              bottom: thirdPanelHover ? "15px" : "5px",
+              left: thirdPanelHover ? "15px" : "5px",
             }}
           >
             <div className="relative">
@@ -206,8 +207,8 @@ const Home: React.FC = () => {
           <div
             className={`absolute transition-all`}
             style={{
-              top: secondPanelFirstHover ? "15px" : "5px",
-              left: secondPanelFirstHover ? "15px" : "5px",
+              top: thirdPanelHover ? "15px" : "5px",
+              left: thirdPanelHover ? "15px" : "5px",
             }}
           >
             <div className="relative">
@@ -218,8 +219,8 @@ const Home: React.FC = () => {
           <div
             className={`absolute transition-all`}
             style={{
-              bottom: secondPanelFirstHover ? "15px" : "5px",
-              right: secondPanelFirstHover ? "15px" : "5px",
+              bottom: thirdPanelHover ? "15px" : "5px",
+              right: thirdPanelHover ? "15px" : "5px",
             }}
           >
             <div className="relative">
@@ -230,8 +231,8 @@ const Home: React.FC = () => {
           <div
             className={`absolute transition-all`}
             style={{
-              top: secondPanelFirstHover ? "15px" : "5px",
-              right: secondPanelFirstHover ? "15px" : "5px",
+              top: thirdPanelHover ? "15px" : "5px",
+              right: thirdPanelHover ? "15px" : "5px",
             }}
           >
             <div className="relative">
@@ -241,7 +242,7 @@ const Home: React.FC = () => {
           </div>
           <div
             className={`font-medium `}
-            style={{ fontSize: secondPanelFirstHover ? "2.5rem" : "2rem" }}
+            style={{ fontSize: thirdPanelHover ? "2.5rem" : "2rem" }}
           >
             Contact
           </div>
@@ -256,7 +257,10 @@ const Home: React.FC = () => {
             placeholder="Phone"
             type="tel"
           ></TextInput>
-          <TextArea className="w-72" placeholder="Message"></TextArea>
+          <TextArea
+            className="w-72 transition-none"
+            placeholder="Message"
+          ></TextArea>
           <BlobButton>Send</BlobButton>
         </div>
       </div>

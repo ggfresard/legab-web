@@ -6,7 +6,7 @@ const ReactIcon: React.FC<Props> = ({ svgProps }) => {
   return (
     <svg
       {...svgProps}
-      className="w-16 transition-all fill-current"
+      className="w-10 md:w-16 transition-all fill-current"
       style={{
         fillRule: "evenodd",
         clipRule: "evenodd",

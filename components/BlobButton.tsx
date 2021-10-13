@@ -4,6 +4,7 @@ interface Props {
   onClick?: MouseEventHandler<HTMLButtonElement>
   onMouseEnter?: MouseEventHandler<HTMLButtonElement>
   onMouseLeave?: MouseEventHandler<HTMLButtonElement>
+  className?: string
 }
 
 const BlobButton: React.FC<Props> = ({
@@ -11,26 +12,24 @@ const BlobButton: React.FC<Props> = ({
   onMouseLeave,
   onMouseEnter,
   onClick,
+  className,
 }) => {
   return (
-    <div className="text-center ">
-      <button
-        className="blob-btn"
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        onClick={onClick}
-      >
-        {children}
-        <span className="blob-btn__inner">
-          <span className="blob-btn__blobs">
-            <span className="blob-btn__blob"></span>
-            <span className="blob-btn__blob"></span>
-            <span className="blob-btn__blob"></span>
-            <span className="blob-btn__blob"></span>
-          </span>
+    <button
+      className={(className ?? "") + " blob-btn px-8 py-4"}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      onClick={onClick}
+    >
+      {children}
+      <span className="blob-btn__inner">
+        <span className="blob-btn__blobs">
+          <span className="blob-btn__blob"></span>
+          <span className="blob-btn__blob"></span>
+          <span className="blob-btn__blob"></span>
+          <span className="blob-btn__blob"></span>
         </span>
-      </button>
-      <br />
+      </span>
       <svg xmlns="http://www.w3.org/2000/svg" className="hidden" version="1.1">
         <defs>
           <filter id="goo">
@@ -49,7 +48,7 @@ const BlobButton: React.FC<Props> = ({
           </filter>
         </defs>
       </svg>
-    </div>
+    </button>
   )
 }
 
