@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="flex h-16 md:h-32 gap-5 justify-between items-center overflow-visible relative">
+    <div className="flex h-16 md:h-32 gap-5 justify-between items-center overflow-hidden relative">
       <div className=" text-xl md:text-4xl ml-5 justify-center flex items-center">
         Le Gab
       </div>
@@ -35,7 +35,7 @@ const Header: React.FC = () => {
         </Link>
       </div>
       <BlobButton
-        className="md:hidden block py-4 px-4 mr-2"
+        className="md:hidden block py-4 px-4"
         onClick={() => {
           setMenuOpen((prev) => !prev)
         }}
@@ -46,7 +46,7 @@ const Header: React.FC = () => {
         <div
           className={` ${
             menuOpen ? "translate-x-0" : "translate-x-full"
-          } gap-1 md:hidden md:gap-5 items-center flex flex-col absolute top-0 right-0 bg-3 border-1 border-[4px] p-2 z-50`}
+          } gap-1 md:gap-5 items-center flex flex-col absolute top-0 right-0 bg-3 border-1 border-[4px] p-2 z-50`}
         >
           <div
             className="w-12 h-12 items-center text-center flex justify-center"

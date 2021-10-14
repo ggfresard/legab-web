@@ -7,7 +7,7 @@ import TextInput from "components/TextInput"
 import useHover from "hooks/useHover"
 import useWindowDimensions from "hooks/useWindowDimensions"
 import Link from "next/link"
-import React, { LegacyRef, useEffect, useState } from "react"
+import React, { LegacyRef, useEffect, useRef, useState } from "react"
 
 const Home: React.FC = () => {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions()
@@ -16,16 +16,19 @@ const Home: React.FC = () => {
     useHover()
   const { isHovered: secondPanelSecondHover, props: secondPanelSecondProps } =
     useHover()
+  const container = useRef<HTMLDivElement>(null)
   const { isHovered: thirdPanelHover, props: thirdPanelProps } = useHover()
 
   const secondPanelHover = secondPanelFirstHover || secondPanelSecondHover
 
+  const [width, height] = [windowWidth, windowHeight]
   return (
     <div
       className="overflow-y-auto flex-1 overflow-x-hidden scrollbar-hide"
       style={{
         width: `${windowWidth ?? 0}px`,
       }}
+      ref={container}
     >
       <div
         id="home"
@@ -105,23 +108,46 @@ const Home: React.FC = () => {
       >
         <svg
           className="absolute h-full w-full top-0 right-0 fill-current"
-          viewBox="0 0 100 100"
+          viewBox={`0 0 ${width} ${height}`}
         >
-          <circle
-            cx={20}
-            cy={55}
-            r={secondPanelFirstHover || !secondPanelHover ? 70 : 0}
-          ></circle>
-          <circle
-            cx={80}
-            cy={40}
-            r={secondPanelSecondHover || !secondPanelHover ? 70 : 0}
-          ></circle>
+          <g className="opacity-1 md:opacity-0">
+            <circle
+              cx={(width ?? 0) / 2}
+              cy={(height ?? 0) / 4}
+              r={secondPanelFirstHover || !secondPanelHover ? width ?? 0 : 0}
+            ></circle>
+            <circle
+              cx={(width ?? 0) / 2}
+              cy={((height ?? 0) * 3) / 4}
+              r={secondPanelSecondHover || !secondPanelHover ? width ?? 0 : 0}
+            ></circle>
+          </g>
+          <g className="opacity-0 md:opacity-100">
+            <circle
+              cx={((width ?? 0) * 0.8) / 4}
+              cy={((height ?? 0) * 0.8) / 2}
+              r={
+                secondPanelFirstHover || !secondPanelHover
+                  ? (height ?? 0) * 0.7
+                  : 0
+              }
+            ></circle>
+            <circle
+              cx={((width ?? 0) * 3 * 1.2) / 4}
+              cy={((height ?? 0) * 1.2) / 2}
+              r={
+                secondPanelSecondHover || !secondPanelHover
+                  ? (height ?? 0) * 0.7
+                  : 0
+              }
+              className="z-50"
+            ></circle>
+          </g>
         </svg>
-        <div className="w-full flex h-full absolute top-0 left-0 ">
+        <div className="w-full justify-evenly p-4 flex flex-col md:flex-row h-full absolute top-0 left-0 ">
           <div
             {...secondPanelFirstProps}
-            className="flex-1 h-full text-5 justify-center items-center flex"
+            className="md:w-1/2  md:h-full  text-5 justify-center items-center flex"
           >
             <div
               style={{
@@ -145,11 +171,15 @@ const Home: React.FC = () => {
                   Engineer, mayor in Computer Science and Information
                   Technologies Universidad Católica del Norte
                 </li>
+                <li>
+                  <b className="text-xl md:text-3xl text-3">Skills:</b> Fast
+                  learner, High adaptability, People person
+                </li>
               </ul>
             </div>
           </div>
           <div
-            className="flex-1 h-full text-5 justify-center items-center flex"
+            className="md:flex-1 md:h-full w-full p-2 text-5 justify-center items-center flex"
             {...secondPanelSecondProps}
           >
             <div
@@ -158,10 +188,6 @@ const Home: React.FC = () => {
               }}
             >
               <ul className="text-lg md:text-2xl max-w-2xl">
-                <li>
-                  <b className="text-xl md:text-3xl text-3">Skills:</b> Fast
-                  learner, High adaptability, People person
-                </li>
                 <li>
                   <b className="text-xl md:text-3xl text-3">Frameworks: </b>
                   React/Next, Angular, Svelte, Node/NestJS, Express, Django/DRF,
@@ -190,7 +216,7 @@ const Home: React.FC = () => {
       >
         <div
           {...thirdPanelProps}
-          className="flex items-center flex-1 m-7 md:m-[10rem]  flex-col gap-6 h-full relative justify-center border-8 border-1"
+          className="flex items-center p-4 flex-1 m-7 md:m-[10rem]  flex-col gap-6 h-full relative justify-center border-8 border-1"
         >
           <div
             className={`absolute transition-all`}
@@ -246,19 +272,19 @@ const Home: React.FC = () => {
           >
             Contact
           </div>
-          <TextInput className="w-72" placeholder="Name"></TextInput>
+          <TextInput className="w-full md:w-72" placeholder="Name"></TextInput>
           <TextInput
-            className="w-72"
+            className="w-full md:w-72"
             placeholder="Email"
             type="email"
           ></TextInput>
           <TextInput
-            className="w-72"
+            className="w-full md:w-72"
             placeholder="Phone"
             type="tel"
           ></TextInput>
           <TextArea
-            className="w-72 transition-none"
+            className="w-full md:w-72 transition-none"
             placeholder="Message"
           ></TextArea>
           <BlobButton>Send</BlobButton>
