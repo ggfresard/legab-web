@@ -11,7 +11,10 @@ import React, { LegacyRef, useEffect, useRef, useState } from "react"
 
 const Home: React.FC = () => {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions()
-  const { isHovered: firstPanelHover, props: firstPanelProps } = useHover()
+  const { isHovered: firstPanelFirstHover, props: firstPanelFirstProps } =
+    useHover()
+  const { isHovered: firstPanelSecondHover, props: firstPanelSecondProps } =
+    useHover()
   const { isHovered: secondPanelFirstHover, props: secondPanelFirstProps } =
     useHover()
   const { isHovered: secondPanelSecondHover, props: secondPanelSecondProps } =
@@ -21,7 +24,10 @@ const Home: React.FC = () => {
 
   const secondPanelHover = secondPanelFirstHover || secondPanelSecondHover
 
-  const [width, height] = [windowWidth, windowHeight]
+  const [width, height] = [
+    windowWidth,
+    container.current?.offsetWidth ?? windowHeight,
+  ]
   return (
     <div
       className="overflow-y-auto flex-1 overflow-x-hidden scrollbar-hide"
@@ -32,14 +38,21 @@ const Home: React.FC = () => {
     >
       <div
         id="home"
-        className="flex flex-col overflow-x-hidden h-full"
+        className="flex flex-col relative overflow-x-hidden h-full"
         style={{
           width: `${windowWidth ?? 0}px`,
         }}
       >
         <div
-          className={`bg-1 h-3/5 flex transition-all items-center justify-around`}
-          {...firstPanelProps}
+          className="absolute  w-1/2 left-0 top-0 h-full z-[50]"
+          {...firstPanelFirstProps}
+        ></div>
+        <div
+          className="absolute w-1/2 right-0 top-0 h-full z-[50]"
+          {...firstPanelSecondProps}
+        ></div>
+        <div
+          className={`bg-1 h-3/5 flex relative transition-all items-center justify-around`}
         >
           <div className="text-3 flex-1 text-3xl md:text-9xl text-center">
             Le Gab
@@ -49,7 +62,9 @@ const Home: React.FC = () => {
             <ReactIcon
               svgProps={{
                 style: {
-                  transform: `rotate(${firstPanelHover ? "180deg" : "0deg"})`,
+                  transform: `rotate(${
+                    firstPanelFirstHover ? "180deg" : "0deg"
+                  })`,
                 },
               }}
             ></ReactIcon>
@@ -59,11 +74,11 @@ const Home: React.FC = () => {
         </div>
         <div
           className={`${
-            firstPanelHover ? "border-r-1" : ""
+            firstPanelFirstHover ? "border-r-1" : ""
           } flex h-1/5 overflow-hidden transition-all`}
           style={{
             width: `${(windowWidth ?? 0) * 2}px`,
-            transform: `translateX(${firstPanelHover ? "0" : "-50%"})`,
+            transform: `translateX(${firstPanelFirstHover ? "0" : "-50%"})`,
           }}
         >
           <svg
@@ -91,63 +106,25 @@ const Home: React.FC = () => {
         </div>
         <div className="flex-1 flex items-center justify-around">
           <Link href="#bio">
-            <BlobButton>Bio</BlobButton>
+            <BlobButton className="z-[60]">Bio</BlobButton>
           </Link>
 
           <Link href="#contact">
-            <BlobButton>Contact</BlobButton>
+            <BlobButton className="z-[60]">Contact</BlobButton>
           </Link>
         </div>
       </div>
       <div
-        className="flex h-full flex-col overflow-hidden relative"
+        className="md:flex md:h-full md:flex-col md:overflow-hidden relative"
         style={{
           width: `${windowWidth ?? 0}px`,
         }}
         id="bio"
       >
-        <svg
-          className="absolute h-full w-full top-0 right-0 fill-current"
-          viewBox={`0 0 ${width} ${height}`}
-        >
-          <g className="opacity-1 md:opacity-0">
-            <circle
-              cx={(width ?? 0) / 2}
-              cy={(height ?? 0) / 4}
-              r={secondPanelFirstHover || !secondPanelHover ? width ?? 0 : 0}
-            ></circle>
-            <circle
-              cx={(width ?? 0) / 2}
-              cy={((height ?? 0) * 3) / 4}
-              r={secondPanelSecondHover || !secondPanelHover ? width ?? 0 : 0}
-            ></circle>
-          </g>
-          <g className="opacity-0 md:opacity-100">
-            <circle
-              cx={((width ?? 0) * 0.8) / 4}
-              cy={((height ?? 0) * 0.8) / 2}
-              r={
-                secondPanelFirstHover || !secondPanelHover
-                  ? (height ?? 0) * 0.7
-                  : 0
-              }
-            ></circle>
-            <circle
-              cx={((width ?? 0) * 3 * 1.2) / 4}
-              cy={((height ?? 0) * 1.2) / 2}
-              r={
-                secondPanelSecondHover || !secondPanelHover
-                  ? (height ?? 0) * 0.7
-                  : 0
-              }
-              className="z-50"
-            ></circle>
-          </g>
-        </svg>
-        <div className="w-full justify-evenly p-4 flex flex-col md:flex-row h-full absolute top-0 left-0 ">
+        <div className="w-full justify-evenly p-4 flex flex-col md:flex-row md:h-full ">
           <div
             {...secondPanelFirstProps}
-            className="md:w-1/2  md:h-full  text-5 justify-center items-center flex"
+            className="md:w-1/2  md:h-full  text-5 justify-center items-center flex  z-20"
           >
             <div
               style={{
@@ -179,7 +156,7 @@ const Home: React.FC = () => {
             </div>
           </div>
           <div
-            className="md:flex-1 md:h-full w-full p-2 text-5 justify-center items-center flex"
+            className="md:flex-1 md:h-full w-full p-2 text-5 justify-center items-center flex  z-20"
             {...secondPanelSecondProps}
           >
             <div
@@ -187,7 +164,7 @@ const Home: React.FC = () => {
                 opacity: secondPanelSecondHover || !secondPanelHover ? 1 : 0,
               }}
             >
-              <ul className="text-lg md:text-2xl max-w-2xl">
+              <ul className="text-lg md:text-2xl max-w-2xl whitespace-pre-line">
                 <li>
                   <b className="text-xl md:text-3xl text-3">Frameworks: </b>
                   React/Next, Angular, Svelte, Node/NestJS, Express, Django/DRF,
@@ -205,10 +182,56 @@ const Home: React.FC = () => {
               </ul>
             </div>
           </div>
+          <svg
+            className="absolute h-full w-full top-0 right-0 fill-current z-10"
+            viewBox={`0 0 ${width} ${height}`}
+          >
+            <g className="opacity-1 md:opacity-0">
+              <circle
+                cx={(width ?? 0) / 2}
+                cy={(height ?? 0) / 4}
+                r={
+                  secondPanelFirstHover || !secondPanelHover
+                    ? (height ?? 0) * 1.2
+                    : 0
+                }
+              ></circle>
+              <circle
+                cx={(width ?? 0) / 2}
+                cy={((height ?? 0) * 3) / 4}
+                r={
+                  secondPanelSecondHover || !secondPanelHover
+                    ? (height ?? 0) * 1.2 ?? 0
+                    : 0
+                }
+              ></circle>
+            </g>
+            <g className="opacity-0 md:opacity-100">
+              <circle
+                cx={((width ?? 0) * 0.8) / 4}
+                cy={((height ?? 0) * 0.8) / 2}
+                r={
+                  secondPanelFirstHover || !secondPanelHover
+                    ? (height ?? 0) * 0.7
+                    : 0
+                }
+              ></circle>
+              <circle
+                cx={((width ?? 0) * 3 * 1.2) / 4}
+                cy={((height ?? 0) * 1.2) / 2}
+                r={
+                  secondPanelSecondHover || !secondPanelHover
+                    ? (height ?? 0) * 0.7
+                    : 0
+                }
+                className="z-40"
+              ></circle>
+            </g>
+          </svg>
         </div>
       </div>
       <div
-        className="flex h-full flex-col overflow-x-hidden"
+        className="flex min-h-full flex-col overflow-x-hidden"
         style={{
           width: `${windowWidth ?? 0}px`,
         }}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react"
 
-const useHover = () => {
-  const [value, setValue] = useState(false)
+const useHover = (initial?: boolean) => {
+  const [value, setValue] = useState(initial || false)
   return {
     isHovered: value,
     props: {

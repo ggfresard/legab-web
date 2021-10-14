@@ -45,7 +45,7 @@ $borderW: 4px;
 .blob-btn {
   overflow: hidden;
   $numOfBlobs: 4;
-  z-index: 1;
+  z-index: 60;
   position: relative;
   text-align: center;
   color: $light;

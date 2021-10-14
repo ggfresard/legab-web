@@ -8,8 +8,8 @@ const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <div className="flex h-16 md:h-32 gap-5 justify-between items-center overflow-hidden relative">
-      <div className=" text-xl md:text-4xl ml-5 justify-center flex items-center">
+    <div className="flex h-16 md:h-32 gap-5  justify-between w-screen items-center relative">
+      <div className=" text-xl  md:text-4xl ml-5 justify-center flex items-center">
         Le Gab
       </div>
       <div className=" gap-1 md:gap-5 items-center hidden md:flex pr-6">
@@ -46,7 +46,7 @@ const Header: React.FC = () => {
         <div
           className={` ${
             menuOpen ? "translate-x-0" : "translate-x-full"
-          } gap-1 md:gap-5 items-center flex flex-col absolute top-0 right-0 bg-3 border-1 border-[4px] p-2 z-50`}
+          } z-50 gap-1   md:gap-5 items-center flex flex-col absolute top-0 right-0 bg-3 border-1 border-[4px] p-2 `}
         >
           <div
             className="w-12 h-12 items-center text-center flex justify-center"
