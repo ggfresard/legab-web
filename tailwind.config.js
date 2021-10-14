@@ -10,6 +10,10 @@ module.exports = {
         4: "#8ee4af",
         5: "#edf5e1",
       },
+      rotate: {
+        ["75"]: "75deg",
+        "-75": "-75deg",
+      },
     },
   },
   variants: {

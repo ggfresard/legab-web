@@ -45,13 +45,13 @@ const ProjectSection: React.FC<Props> = ({
       >
         <div
           className={`absolute origin-top ${
-            right ? "rotate-45" : "-rotate-45"
+            right ? "rotate-75 lg:rotate-45" : "-rotate-75 lg:-rotate-45"
           }  transform top-0  ${
             right ? "-right-1/2" : "-left-1/2"
           } text-center transition-all ${
             (right ? !textHover : textHover)
-              ? "-translate-x-48"
-              : "translate-x-48"
+              ? "md:-translate-x-48"
+              : "md:translate-x-48"
           } text-3 top-0 bg-1`}
           style={{
             width: `${(windowWidth ?? 0) * 4}px`,
@@ -65,17 +65,21 @@ const ProjectSection: React.FC<Props> = ({
           right ? "flex-row-reverse" : ""
         } h-full gap-3 z-[50] absolute top-0 ${right ? "right-0" : "left-0"}`}
       >
-        <div className="w-1/2 flex p-4 h-full items-center"></div>
+        <div className="w-0 md:w-1/2 flex p-4 h-full items-center"></div>
         <div
-          className={`w-1/2 flex p-4 h-full items-center ${
+          className={`w-full md:w-1/2 flex p-4 h-full items-center ${
             right ? "justify-start" : "justify-end"
           }`}
           {...textProps}
         >
-          <div className={`${!right ? "text-right" : "text-left"} `}>
+          <div
+            className={`bg-1 md:bg-transparent rounded border-3 border-[2px] md:border-none p-5 md:p-0  ${
+              !right ? "text-right" : "text-left"
+            } `}
+          >
             <div className="text-xl md:text-5xl text-3">{title}</div>
             {textHover ? (
-              <div className="text-lg md:text-2xl my-2 text-5">
+              <div className="text-sm  md:text-2xl my-2 text-5">
                 {description ?? ""}
               </div>
             ) : (
