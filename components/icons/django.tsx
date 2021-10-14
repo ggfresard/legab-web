@@ -7,7 +7,7 @@ const DjangoIcon: React.FC<Props> = ({ svgProps }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
-      className="w-10 md:w-16  transition-all"
+      className="w-10 md:w-16  transition-all text-5 fill-current"
       {...svgProps}
       style={{
         display: "block",

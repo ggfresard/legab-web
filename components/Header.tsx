@@ -15,22 +15,22 @@ const Header: React.FC = () => {
       <div className=" gap-1 md:gap-5 items-center hidden md:flex pr-6">
         <Link href="/home#home">
           <BlobButton>
-            <div className="text-xs md:text-base w-12 md:w-32">Home</div>
+            <div className="text-xs md:text-base w-12 md:w-20">Home</div>
           </BlobButton>
         </Link>
         <Link href="/home#bio">
           <BlobButton>
-            <div className="text-xs md:text-base w-12 md:w-32">Bio</div>
+            <div className="text-xs md:text-base w-12 md:w-20">Bio</div>
           </BlobButton>
         </Link>
         <Link href="/home#contact">
           <BlobButton>
-            <div className="text-xs md:text-base w-12 md:w-32">Contact</div>
+            <div className="text-xs md:text-base w-12 md:w-20">Contact</div>
           </BlobButton>
         </Link>
         <Link href="/projects">
           <BlobButton>
-            <div className="text-xs md:text-base w-12 md:w-32">Projects</div>
+            <div className="text-xs md:text-base w-12 md:w-20">Projects</div>
           </BlobButton>
         </Link>
       </div>

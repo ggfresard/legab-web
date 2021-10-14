@@ -58,7 +58,7 @@ const Home: NextPage = () => {
           <div className="absolute top-0 right-0 w-11 h-2 bg-1"></div>
         </div>
       </div>
-      <div className="text-9xl">LeGab.dev</div>
+      <div className="text-4xl font-semibold md:text-9xl">LeGab.dev</div>
       <Link href="/home">
         <BlobButton
           onMouseEnter={() => setButtonHover(true)}
