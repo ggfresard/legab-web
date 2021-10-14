@@ -46,7 +46,7 @@ const Header: React.FC = () => {
         <div
           className={` ${
             menuOpen ? "translate-x-0" : "translate-x-full"
-          } z-50 gap-1   md:gap-5 items-center flex flex-col absolute top-0 right-0 bg-3 border-1 border-[4px] p-2 `}
+          } z-[100] gap-1   md:gap-5 items-center flex flex-col absolute top-0 right-0 bg-3 border-1 border-[4px] p-2 `}
         >
           <div
             className="w-12 h-12 items-center text-center flex justify-center"

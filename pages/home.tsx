@@ -115,7 +115,7 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div
-        className="md:flex md:h-full md:flex-col md:overflow-hidden relative"
+        className="md:flex md:h-full md:flex-chol md:overflow-hidden relative"
         style={{
           width: `${windowWidth ?? 0}px`,
         }}
