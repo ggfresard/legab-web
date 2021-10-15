@@ -1,13 +1,6 @@
-import { MouseEventHandler } from "react"
+import { ButtonHTMLAttributes, MouseEventHandler } from "react"
 
-interface Props {
-  onClick?: MouseEventHandler<HTMLButtonElement>
-  onMouseEnter?: MouseEventHandler<HTMLButtonElement>
-  onMouseLeave?: MouseEventHandler<HTMLButtonElement>
-  className?: string
-}
-
-const BlobButton: React.FC<Props> = ({
+const BlobButton: React.FC<ButtonHTMLAttributes<HTMLButtonElement>> = ({
   children,
   onMouseLeave,
   onMouseEnter,

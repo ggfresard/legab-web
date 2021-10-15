@@ -1,5 +1,8 @@
 import BlobButton from "components/BlobButton"
 import DjangoIcon from "components/icons/django"
+import NestIcon from "components/icons/nest"
+import MongoIcon from "components/icons/mongo"
+import NextIcon from "components/icons/next"
 import ReactIcon from "components/icons/react"
 import TypescriptIcon from "components/icons/typescript"
 import TextArea from "components/TextArea"
@@ -8,6 +11,7 @@ import useHover from "hooks/useHover"
 import useWindowDimensions from "hooks/useWindowDimensions"
 import Link from "next/link"
 import React, { LegacyRef, useEffect, useRef, useState } from "react"
+import axios from "axios"
 
 const Home: React.FC = () => {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions()
@@ -23,6 +27,13 @@ const Home: React.FC = () => {
   const { isHovered: thirdPanelHover, props: thirdPanelProps } = useHover()
 
   const secondPanelHover = secondPanelFirstHover || secondPanelSecondHover
+
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    message: "",
+    phone: "",
+  })
 
   const [width, height] = [
     windowWidth,
@@ -70,6 +81,9 @@ const Home: React.FC = () => {
             ></ReactIcon>
             <DjangoIcon></DjangoIcon>
             <TypescriptIcon></TypescriptIcon>
+            <NextIcon></NextIcon>
+            <NestIcon></NestIcon>
+            <MongoIcon></MongoIcon>
           </div>
         </div>
         <div
@@ -230,89 +244,109 @@ const Home: React.FC = () => {
           </svg>
         </div>
       </div>
-      <div
-        className="flex min-h-full flex-col overflow-x-hidden"
-        style={{
-          width: `${windowWidth ?? 0}px`,
+      <form
+        action="post"
+        onSubmit={async (e) => {
+          e.preventDefault()
+          const response = await axios.post(
+            "https://submit-form.com/gBufNfD7",
+            values
+          )
         }}
-        id="contact"
       >
         <div
-          {...thirdPanelProps}
-          className="flex items-center p-4 flex-1 m-7 md:m-[10rem]  flex-col gap-6 h-full relative justify-center border-8 border-1"
+          className="flex min-h-full flex-col overflow-x-hidden"
+          style={{
+            width: `${windowWidth ?? 0}px`,
+          }}
+          id="contact"
         >
           <div
-            className={`absolute transition-all`}
-            style={{
-              bottom: thirdPanelHover ? "15px" : "5px",
-              left: thirdPanelHover ? "15px" : "5px",
-            }}
+            {...thirdPanelProps}
+            className="flex items-center p-4 flex-1 m-7 md:m-[10rem]  flex-col gap-6 h-full relative justify-center border-8 border-1"
           >
-            <div className="relative">
-              <div className="absolute bottom-0 left-0 w-2 h-11 bg-1"></div>
-              <div className="absolute bottom-0 left-0 w-11 h-2 bg-1"></div>
+            <div
+              className={`absolute transition-all`}
+              style={{
+                bottom: thirdPanelHover ? "15px" : "5px",
+                left: thirdPanelHover ? "15px" : "5px",
+              }}
+            >
+              <div className="relative">
+                <div className="absolute bottom-0 left-0 w-2 h-11 bg-1"></div>
+                <div className="absolute bottom-0 left-0 w-11 h-2 bg-1"></div>
+              </div>
             </div>
-          </div>
-          <div
-            className={`absolute transition-all`}
-            style={{
-              top: thirdPanelHover ? "15px" : "5px",
-              left: thirdPanelHover ? "15px" : "5px",
-            }}
-          >
-            <div className="relative">
-              <div className="absolute top-0 left-0 w-2 h-11 bg-1"></div>
-              <div className="absolute top-0 left-0 w-11 h-2 bg-1"></div>
+            <div
+              className={`absolute transition-all`}
+              style={{
+                top: thirdPanelHover ? "15px" : "5px",
+                left: thirdPanelHover ? "15px" : "5px",
+              }}
+            >
+              <div className="relative">
+                <div className="absolute top-0 left-0 w-2 h-11 bg-1"></div>
+                <div className="absolute top-0 left-0 w-11 h-2 bg-1"></div>
+              </div>
             </div>
-          </div>
-          <div
-            className={`absolute transition-all`}
-            style={{
-              bottom: thirdPanelHover ? "15px" : "5px",
-              right: thirdPanelHover ? "15px" : "5px",
-            }}
-          >
-            <div className="relative">
-              <div className="absolute bottom-0 right-0 w-2 h-11 bg-1"></div>
-              <div className="absolute bottom-0 right-0 w-11 h-2 bg-1"></div>
+            <div
+              className={`absolute transition-all`}
+              style={{
+                bottom: thirdPanelHover ? "15px" : "5px",
+                right: thirdPanelHover ? "15px" : "5px",
+              }}
+            >
+              <div className="relative">
+                <div className="absolute bottom-0 right-0 w-2 h-11 bg-1"></div>
+                <div className="absolute bottom-0 right-0 w-11 h-2 bg-1"></div>
+              </div>
             </div>
-          </div>
-          <div
-            className={`absolute transition-all`}
-            style={{
-              top: thirdPanelHover ? "15px" : "5px",
-              right: thirdPanelHover ? "15px" : "5px",
-            }}
-          >
-            <div className="relative">
-              <div className="absolute top-0 right-0 w-2 h-11 bg-1"></div>
-              <div className="absolute top-0 right-0 w-11 h-2 bg-1"></div>
+            <div
+              className={`absolute transition-all`}
+              style={{
+                top: thirdPanelHover ? "15px" : "5px",
+                right: thirdPanelHover ? "15px" : "5px",
+              }}
+            >
+              <div className="relative">
+                <div className="absolute top-0 right-0 w-2 h-11 bg-1"></div>
+                <div className="absolute top-0 right-0 w-11 h-2 bg-1"></div>
+              </div>
             </div>
+            <div
+              className={`font-medium `}
+              style={{ fontSize: thirdPanelHover ? "2.5rem" : "2rem" }}
+            >
+              Contact
+            </div>
+            <TextInput
+              className="w-full md:w-72"
+              placeholder="Name"
+              onChange={(e) => setValues({ ...values, name: e.target.value })}
+            ></TextInput>
+            <TextInput
+              className="w-full md:w-72"
+              placeholder="Email"
+              type="email"
+              onChange={(e) => setValues({ ...values, email: e.target.value })}
+            ></TextInput>
+            <TextInput
+              className="w-full md:w-72"
+              placeholder="Phone"
+              type="tel"
+              onChange={(e) => setValues({ ...values, phone: e.target.value })}
+            ></TextInput>
+            <TextArea
+              className="w-full md:w-72 transition-none"
+              placeholder="Message"
+              onChange={(e) =>
+                setValues({ ...values, message: e.target.value })
+              }
+            ></TextArea>
+            <BlobButton type="submit">Send</BlobButton>
           </div>
-          <div
-            className={`font-medium `}
-            style={{ fontSize: thirdPanelHover ? "2.5rem" : "2rem" }}
-          >
-            Contact
-          </div>
-          <TextInput className="w-full md:w-72" placeholder="Name"></TextInput>
-          <TextInput
-            className="w-full md:w-72"
-            placeholder="Email"
-            type="email"
-          ></TextInput>
-          <TextInput
-            className="w-full md:w-72"
-            placeholder="Phone"
-            type="tel"
-          ></TextInput>
-          <TextArea
-            className="w-full md:w-72 transition-none"
-            placeholder="Message"
-          ></TextArea>
-          <BlobButton>Send</BlobButton>
         </div>
-      </div>
+      </form>
     </div>
   )
 }
