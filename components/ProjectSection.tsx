@@ -23,7 +23,7 @@ const ProjectSection: React.FC<Props> = ({
 }) => {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions()
   const container = useRef<HTMLDivElement>(null)
-  const { isHovered: textHover, props: textProps } = useHover()
+  const { isHover: textHover, props: textProps } = useHover()
 
   return (
     <div className="h-full overflow-hidden relative group" ref={container}>
