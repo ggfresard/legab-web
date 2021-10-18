@@ -5,8 +5,8 @@ import React from "react"
 
 const Projects: React.FC = () => {
   const { width: windowWidth, height: windowHeight } = useWindowDimensions()
-  const { isHovered: firstPanelHover, props: firstPanelProps } = useHover()
-  const { isHovered: secondPanelHover, props: secondPanelProps } = useHover()
+  const { isHover: firstPanelHover, props: firstPanelProps } = useHover()
+  const { isHover: secondPanelHover, props: secondPanelProps } = useHover()
   return (
     <div
       className="overflow-y-auto flex-1 overflow-x-hidden scrollbar-hide"
